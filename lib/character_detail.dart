@@ -14,10 +14,12 @@ class CharacterDetail extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Text(character.name),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(character.description ?? 'No description available.'),
+            child: Text(character.description),
           ),
+          Image.network(character.image)
         ],
       ),
     );
