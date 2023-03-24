@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 class Character {
   final int id;
@@ -9,9 +8,9 @@ class Character {
   final int series;
   final int stories;
   final int events;
+  final List<String> seriesNames;
 
-
-  Character({required this.id, required this.name, required this.image, required this.description, required this.comics, required this.series, required this.stories, required this.events});
+  Character({required this.id, required this.name, required this.image, required this.description, required this.comics, required this.series, required this.stories, required this.events, required this.seriesNames});
 
   factory Character.fromJson(Map<String, dynamic> json) {
     return Character(
@@ -23,6 +22,7 @@ class Character {
       series: json['series']['available'],
       stories: json['stories']['available'],
       events: json['events']['available'],
+      seriesNames: extractSeriesNames(json['series']['items'])
 
       
     );
@@ -36,3 +36,11 @@ String validateDescription(String description){
     return description;
   }
 }
+
+List<String> extractSeriesNames(List<dynamic> series) {
+    List<String> seriesNames = [];
+    for (int i = 0; i < 3 && i < series.length; i++) {
+      seriesNames.add(series[i]['name']);
+    }
+    return seriesNames;
+  }

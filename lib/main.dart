@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Alkatra',
         textTheme: TextTheme(
-          displayLarge: TextStyle(fontSize: 32, color: Colors.red),
-          bodyMedium: TextStyle(fontSize: 13),
-          bodyLarge: TextStyle(fontSize: 20, color: Colors.green)
+          titleLarge: TextStyle(fontSize: 32, color: Colors.red),
+          bodyMedium: TextStyle(fontSize: 17),
+          bodyLarge: TextStyle(fontSize: 20, color: Colors.grey),
+          titleMedium: TextStyle(fontSize: 24, color: Colors.yellow, backgroundColor: Colors.red)
         )
 
       ),
