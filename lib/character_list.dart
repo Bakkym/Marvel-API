@@ -22,7 +22,8 @@ class _CharacterListState extends State<CharacterList> {
 
   Future<void> _loadCharacters() async {
     // Realizamos una petición HTTP GET a la API.
-    final response = await http.get(Uri.parse('https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=700d8cece9125e248a5e3dadb1c12ce5&hash=fc87213c0ba1fefeea56ebe7c27e70d3'));
+    final response = await http.get(Uri.parse(
+        'https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=700d8cece9125e248a5e3dadb1c12ce5&hash=fc87213c0ba1fefeea56ebe7c27e70d3'));
 
     // Si la respuesta no es exitosa, lanzamos una excepción.
     if (response.statusCode != 200) {
@@ -33,7 +34,8 @@ class _CharacterListState extends State<CharacterList> {
     final List<dynamic> data = jsonDecode(response.body)['data']['results'];
 
     // Creamos una lista de personajes a partir de los mapas.
-    final List<Character> characters = data.map((json) => Character.fromJson(json)).toList();
+    final List<Character> characters =
+        data.map((json) => Character.fromJson(json)).toList();
 
     // Actualizamos el estado del widget para incluir los personajes cargados.
     setState(() {
@@ -65,20 +67,28 @@ class _CharacterListState extends State<CharacterList> {
       itemBuilder: (context, index) {
         final character = _characters[index];
         return GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CharacterDetail(character: character)),
-          ),
-          child: ListTile(
-            leading: Image.network(character.image),
-            title: Text(character.name),
-          ),
-        );
+            onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CharacterDetail(character: character)),
+                ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Container(
+                    height:
+                        100,
+                    width: 100, // Establece una altura fija para el contenedor.
+                    child: Image.network(character.image, fit: BoxFit.cover),
+                  ),
+                  SizedBox(width: 16),
+                  Text(character.name),
+                ],
+              ),
+            ));
       },
     );
   }
 }
-
-
-
-

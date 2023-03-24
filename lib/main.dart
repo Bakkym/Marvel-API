@@ -13,6 +13,13 @@ class MyApp extends StatelessWidget {
       title: 'Marvel Characters',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Alkatra',
+        textTheme: TextTheme(
+          displayLarge: TextStyle(fontSize: 32, color: Colors.red),
+          bodyMedium: TextStyle(fontSize: 13),
+          bodyLarge: TextStyle(fontSize: 20, color: Colors.green)
+        )
+
       ),
       home: CharacterList(),
     );

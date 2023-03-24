@@ -14,12 +14,35 @@ class CharacterDetail extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text(character.name),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(character.description),
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Image.network(
+            character.image,
+            fit: BoxFit.cover,
+            ),
+         
           ),
-          Image.network(character.image)
+          Text(
+            character.name,
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+          Text(character.description),
+          Text(
+            'Comics available: ' + character.comics.toString(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          Text(
+            'Series available: ' + character.series.toString(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          Text(
+            'Stories available: ' + character.stories.toString(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          Text(
+            'Events available: ' + character.events.toString(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
         ],
       ),
     );
